@@ -10,7 +10,9 @@ function App() {
   return (
     <div className="App">
       <title>DSM</title>
-      <h1>Drawing social media</h1>
+      <div onClick={() => (window.location.href = "/")} className="header">
+        <h1>Drawing social media</h1>
+      </div>
       <div className="content">
         <Router>
           <Routes>

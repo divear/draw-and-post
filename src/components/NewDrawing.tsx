@@ -1,7 +1,11 @@
 import React from "react";
 
 function NewDrawing() {
-  return <div>NewDrawing</div>;
+  return (
+    <div>
+      <h1>Novej obrázek</h1>
+    </div>
+  );
 }
 
 export default NewDrawing;
