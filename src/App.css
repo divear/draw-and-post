@@ -1,9 +1,20 @@
 :root {
-  --bg: rgb(7, 29, 46);
+  --bg: rgb(2, 17, 27);
   --fr: white;
 }
 
 body {
-  background-color: var(--bg);
+  background-color: rgb(4, 13, 20);
   color: var(--fr);
+}
+
+.img {
+  width: 10vw;
+  background-color: white;
+}
+.message {
+  background-color: var(--bg);
+  padding: 1vw;
+  border: 1px solid var(--fr);
+  border-radius: 2vw;
 }

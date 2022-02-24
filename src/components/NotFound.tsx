@@ -3,7 +3,7 @@ import React from "react";
 function NotFound() {
   return (
     <div>
-      <h1>dsj</h1>
+      <h1>Stránka nenalezena</h1>
     </div>
   );
 }
