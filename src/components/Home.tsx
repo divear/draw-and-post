@@ -23,24 +23,26 @@ function Home() {
     <div>
       <h1>home</h1>
 
-      {data[0] ? (
-        data.map((d) => {
-          console.log(d);
+      <div className="messages">
+        {data[0] ? (
+          data.map((d) => {
+            console.log(d);
 
-          return (
-            <div key={d.id} className="message">
-              <h5 className="date">{d.posted_date}</h5>
-              <h5>
-                <i>{d.username || "Anonym"}</i>
-              </h5>
-              <h1>{d.nazev}</h1>
-              <img className="img" src={d.img} alt="" />
-            </div>
-          );
-        })
-      ) : (
-        <h1>Načítání...</h1>
-      )}
+            return (
+              <div key={d.id} className="message">
+                <h5 className="date">{d.posted_date}</h5>
+                {/* <h5>
+                  <i>{d.username || "Anonym"}</i>
+                </h5> */}
+                <h1>{d.nazev}</h1>
+                <img className="img" src={d.img} alt="" />
+              </div>
+            );
+          })
+        ) : (
+          <h1>Načítání...</h1>
+        )}
+      </div>
     </div>
   );
 }

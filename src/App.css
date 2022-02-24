@@ -1,6 +1,14 @@
+@font-face {
+  font-family: "Inter";
+  src: url("./components/fonts/Inter-VariableFont_slnt\,wght.ttf")
+    format("truetype");
+}
 :root {
   --bg: rgb(2, 17, 27);
   --fr: white;
+}
+* {
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -17,4 +25,12 @@ body {
   padding: 1vw;
   border: 1px solid var(--fr);
   border-radius: 2vw;
+}
+.messages {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  margin: 0vw 3vw 0 0;
 }
