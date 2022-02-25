@@ -16,7 +16,7 @@ function App() {
       <div className="content">
         <Router>
           <Routes>
-            <Route path="nova" element={<NewDrawing />}></Route>
+            <Route path="novyObrazek" element={<NewDrawing />}></Route>
             <Route path="/feedback" element={<Feedback />}></Route>
             <Route path="/" element={<Home />}></Route>
             <Route path="*" element={<NotFound />}></Route>
