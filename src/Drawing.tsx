@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 function Drawing() {
     let Xpos: number;
     let Ypos: number;
     let isUp = false;
     const [lineWidth, setLineWidth] = useState(50);
+    const [color, setColor] = useState("black");
 
     onmousedown = function (e) {
         isUp = true;
@@ -24,20 +25,11 @@ function Drawing() {
 
     const canvas = useRef(null);
 
-    // useEffect(() => {
-    //     if (canvas) {
-    //         const c: CanvasRenderingContext2D | null =
-    //             canvas.current && canvas.current.getContext("2d");
-
-    //         c.fillStyle = "purple";
-    //     }
-    // }, [canvas]);
-
     function Draw() {
         const c = canvas.current && canvas.current.getContext("2d");
 
         if (c) {
-            c.fillStyle = "green";
+            c.fillStyle = color;
 
             c.beginPath();
             c.arc(Xpos, Ypos, lineWidth, 0, 2 * Math.PI);
@@ -55,12 +47,17 @@ function Drawing() {
                 max={100}
                 title="Tloušťka tahu"
             />
+            <input
+                type="color"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
+            />
             <canvas
                 id="canvas"
                 onMouseMove={Draw}
                 ref={canvas}
                 width={window.innerWidth / 2}
-                height={window.innerHeight - 50}
+                height={window.innerHeight - 100}
             />
         </div>
     );
