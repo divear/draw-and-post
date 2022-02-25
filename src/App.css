@@ -1,64 +1,77 @@
 @font-face {
-  font-family: "Inter";
-  src: url("./components/fonts/Inter-VariableFont_slnt\,wght.ttf")
-    format("truetype");
+    font-family: "Inter";
+    src: url("./components/fonts/Inter-VariableFont_slnt\,wght.ttf")
+        format("truetype");
 }
 :root {
-  --bg: rgb(2, 17, 27);
-  --fr: white;
-  --border: rgb(85, 87, 102);
-  --main: #2cab5d;
+    --bg: rgb(2, 17, 27);
+    --fr: white;
+    --border: rgb(85, 87, 102);
+    --main: #2cab5d;
 }
 * {
-  font-family: "Inter", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 body {
-  background-color: rgb(4, 13, 20);
-  color: var(--fr);
+    background-color: rgb(4, 13, 20);
+    color: var(--fr);
 }
 button {
-  background-color: var(--main);
-  color: var(--fr);
-  font-size: 2rem;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  border-radius: 1vw;
+    background-color: var(--main);
+    color: var(--fr);
+    font-size: 2rem;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    border-radius: 1vw;
 }
 input {
-  font-size: 3rem;
-  width: 20%;
+    font-size: 3rem;
+    width: 20%;
 }
 
 .img {
-  width: 10vw;
-  background-color: white;
+    width: 10vw;
+    background-color: white;
 }
 .message {
-  background-color: var(--bg);
-  padding: 1vw;
-  border: 1px solid var(--border);
-  border-radius: 2vw;
+    background-color: var(--bg);
+    padding: 1vw;
+    border: 1px solid var(--border);
+    border-radius: 2vw;
 }
 .messages {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
 
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
-  margin: 2vw 3vw 0 0;
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin: 2vw 3vw 0 0;
 }
 .date {
-  opacity: 0.4;
-  margin: 0;
+    opacity: 0.4;
+    margin: 0;
 }
 .addDrawing {
-  float: right;
-  padding: 0.2vw;
+    float: right;
+    padding: 0.2vw;
 }
 .addForm {
 }
 .addForm > * {
-  font-size: 2rem;
-  margin: 1vw;
+    font-size: 2rem;
+    margin: 1vw;
+}
+.drawing {
+    float: right;
+    width: 50%;
+    position: absolute;
+    top: 0%;
+    right: 20%;
+}
+#canvas {
+    background-color: white;
+}
+.floatRight {
+    float: right;
 }
