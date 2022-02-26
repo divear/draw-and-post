@@ -4,12 +4,16 @@ import { ref, getStorage, uploadBytes } from "./firebase";
 import { gcanvas as canvas } from "../Drawing";
 
 const storage = getStorage();
+const name = (Math.random() + 1).toString(36).substring(7);
+
 function NewDrawing() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [isDisabled, setIsDisabled] = useState(false);
     const [nazev, setNazev] = useState("f");
     const [img, setImg] = useState<any>();
-    const [imgLink, setImgLink] = useState("");
+    const [imgLink, setImgLink] = useState(
+        `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media&token=${process.env.REACT_APP_TOKEN}`
+    );
     const [username, setUsername] = useState("f");
     const [error, setError] = useState("");
 
@@ -22,43 +26,50 @@ function NewDrawing() {
 
         localStorage.setItem("username", username);
 
-        console.log(canvas);
+        async function uploadCanvas() {
+            let imgBlob: any;
+            canvas.toBlob((blob) => {
+                imgBlob = blob;
+                console.log(imgBlob);
+                setImg(imgBlob);
 
-        canvas.toBlob((blob) => {
-            console.log(blob);
-            var image = new Image();
-            image.src = blob;
-        });
-        const name = (Math.random() + 1).toString(36).substring(7);
-        const spaceRef = ref(storage, `images/${name}`);
+                console.log(imgBlob);
 
-        setImg(img);
-        setImgLink(
-            `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}?alt=media&token=${process.env.REACT_APP_TOKEN}`
-        );
-        console.log(name);
+                const spaceRef = ref(storage, `images/${name}.png`);
 
-        uploadBytes(spaceRef, img).then(async (snapshot) => {
-            try {
-                setIsDisabled(true);
+                imgBlob &&
+                    uploadBytes(spaceRef, imgBlob).then(async (snapshot) => {
+                        try {
+                            console.log("Uploaded!!");
+                            console.log(snapshot);
 
-                const Rnazev = { nazev };
-                const Rlink = { imgLink };
-                const Rusername = { username };
+                            setIsDisabled(true);
 
-                const arr = [Rnazev, Rlink, Rusername];
+                            const Rnazev = { nazev };
+                            const Rlink = { imgLink };
+                            const Rusername = { username };
 
-                const response = await fetch(`${serverDomain}drawings`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(arr),
-                });
-                console.log(response);
-                // window.location.href = "/";
-            } catch (error) {
-                console.log(error);
-            }
-        });
+                            const arr = [Rnazev, Rlink, Rusername];
+
+                            const response = await fetch(
+                                `${serverDomain}/drawings`,
+                                {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify(arr),
+                                }
+                            );
+                            console.log(response);
+                            window.location.href = "/";
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    });
+            });
+        }
+        uploadCanvas();
     }
 
     return (
