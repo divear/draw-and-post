@@ -75,3 +75,6 @@ input {
 .floatRight {
     float: right;
 }
+.error {
+    color: red;
+}

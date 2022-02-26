@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+let gcanvas;
 
 function Drawing() {
     let Xpos: number;
@@ -11,7 +12,6 @@ function Drawing() {
         isUp = true;
         this.onmousemove = (e) => {
             if (isUp) {
-                console.log(e);
                 Xpos = e.offsetX;
                 Ypos = e.offsetY;
             }
@@ -20,13 +20,13 @@ function Drawing() {
                 isUp = false;
             };
         };
-        console.log(Xpos);
     };
 
     const canvas = useRef(null);
 
     function Draw() {
         const c = canvas.current && canvas.current.getContext("2d");
+        gcanvas = canvas.current;
 
         if (c) {
             c.fillStyle = color;
@@ -51,6 +51,7 @@ function Drawing() {
                 type="color"
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
+                title="Barva tahu"
             />
             <canvas
                 id="canvas"
@@ -64,3 +65,5 @@ function Drawing() {
 }
 
 export default Drawing;
+
+export { gcanvas };
