@@ -8,7 +8,7 @@ function Drawing() {
     const [lineWidth, setLineWidth] = useState(50);
     const [color, setColor] = useState("black");
 
-    // const HEIGHT = window.innerWidth > 820 ? window.innerHeight - 100 : 200;
+    const HEIGHT = window.innerWidth > 820 ? window.innerHeight - 100 : 375;
     const WIDTH = window.innerWidth > 820 ? window.innerWidth / 2 : 375;
 
     onmousedown = function (e) {
@@ -66,7 +66,7 @@ function Drawing() {
                 onMouseMove={Draw}
                 ref={canvas}
                 width={WIDTH}
-                height={WIDTH}
+                height={HEIGHT}
             />
         </div>
     );
