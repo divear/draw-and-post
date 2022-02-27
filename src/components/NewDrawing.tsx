@@ -9,20 +9,16 @@ const name = (Math.random() + 1).toString(36).substring(7);
 function NewDrawing() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [isDisabled, setIsDisabled] = useState(false);
-    const [nazev, setNazev] = useState("f");
+    const [nazev, setNazev] = useState("");
     const [img, setImg] = useState<any>();
     const [imgLink, setImgLink] = useState(
         `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media&token=${process.env.REACT_APP_TOKEN}`
     );
-    const [username, setUsername] = useState("f");
+    const [username, setUsername] = useState("");
     const [error, setError] = useState("");
 
     function submit(e) {
         e.preventDefault();
-        if (!nazev || !username) {
-            setError("Všechna pole jsou povinná!");
-            return;
-        }
 
         localStorage.setItem("username", username);
 
@@ -74,6 +70,7 @@ function NewDrawing() {
 
     return (
         <div>
+            <title>Nový obrázek</title>
             <form onSubmit={submit} className="addForm" action="">
                 <div className="usernameDiv">
                     <label htmlFor="username">Přezdívka</label>
@@ -87,7 +84,7 @@ function NewDrawing() {
                     />
                 </div>
 
-                <div className="bodyDiv">
+                <div className="usernameDiv">
                     <label htmlFor="nazev">Název obrázku</label>
                     <br />
                     <input

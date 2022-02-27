@@ -21,6 +21,7 @@ function Home() {
 
     return (
         <div>
+            <title>Malo</title>
             <button
                 onClick={() => (window.location.href = "/novyObrazek")}
                 className="addDrawing"
