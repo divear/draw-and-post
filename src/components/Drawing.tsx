@@ -4,20 +4,28 @@ let gcanvas;
 function Drawing() {
     let Xpos: number;
     let Ypos: number;
-    let isUp = false;
+    let isDown = false;
     const [lineWidth, setLineWidth] = useState(50);
     const [color, setColor] = useState("black");
 
+    // const HEIGHT = window.innerWidth > 820 ? window.innerHeight - 100 : 200;
+    const WIDTH = window.innerWidth > 820 ? window.innerWidth / 2 : 375;
+
     onmousedown = function (e) {
-        isUp = true;
+        console.log("mouse down");
+
+        isDown = true;
         this.onmousemove = (e) => {
-            if (isUp) {
+            console.log("mouse move");
+
+            if (isDown || WIDTH < 810) {
                 Xpos = e.offsetX;
                 Ypos = e.offsetY;
+                console.log(Xpos);
             }
 
             this.onmouseup = () => {
-                isUp = false;
+                isDown = false;
             };
         };
     };
@@ -57,8 +65,8 @@ function Drawing() {
                 id="canvas"
                 onMouseMove={Draw}
                 ref={canvas}
-                width={window.innerWidth / 2}
-                height={window.innerHeight - 100}
+                width={WIDTH}
+                height={WIDTH}
             />
         </div>
     );

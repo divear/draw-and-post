@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Drawing from "../Drawing";
+import Drawing from "./Drawing";
 import { ref, getStorage, uploadBytes } from "./firebase";
-import { gcanvas as canvas } from "../Drawing";
+import { gcanvas as canvas } from "./Drawing";
 
 const storage = getStorage();
 const name = (Math.random() + 1).toString(36).substring(7);
@@ -69,7 +69,7 @@ function NewDrawing() {
     }
 
     return (
-        <div>
+        <div className="newDrawing">
             <title>Nový obrázek</title>
             <form onSubmit={submit} className="addForm" action="">
                 <div className="usernameDiv">
