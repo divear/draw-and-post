@@ -12,7 +12,7 @@ function NewDrawing() {
     const [nazev, setNazev] = useState("");
     const [img, setImg] = useState<any>();
     const [imgLink, setImgLink] = useState(
-        `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media&token=${process.env.REACT_APP_TOKEN}`
+        `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`
     );
     const [username, setUsername] = useState("");
     const [error, setError] = useState("");
