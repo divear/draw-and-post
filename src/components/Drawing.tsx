@@ -12,16 +12,11 @@ function Drawing() {
     const WIDTH = window.innerWidth > 820 ? window.innerWidth / 2 : 375;
 
     onmousedown = function (e) {
-        console.log("mouse down");
-
         isDown = true;
         this.onmousemove = (e) => {
-            console.log("mouse move");
-
             if (isDown || WIDTH < 810) {
                 Xpos = e.offsetX;
                 Ypos = e.offsetY;
-                console.log(Xpos);
             }
 
             this.onmouseup = () => {
