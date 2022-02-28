@@ -10,13 +10,9 @@ function NewDrawing() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [isDisabled, setIsDisabled] = useState(false);
     const [nazev, setNazev] = useState("");
-    const [img, setImg] = useState<any>();
-    const [imgLink, setImgLink] = useState(
-        `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`
-    );
     const [username, setUsername] = useState("");
-    const [error, setError] = useState("");
 
+    const imgLink = `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`;
     function submit(e) {
         e.preventDefault();
 
@@ -26,10 +22,6 @@ function NewDrawing() {
             let imgBlob: any;
             canvas.toBlob((blob) => {
                 imgBlob = blob;
-                console.log(imgBlob);
-                setImg(imgBlob);
-
-                console.log(imgBlob);
 
                 const spaceRef = ref(storage, `images/${name}.png`);
 
@@ -99,8 +91,6 @@ function NewDrawing() {
                 <button className="poslat" disabled={isDisabled}>
                     Poslat
                 </button>
-
-                <h2 className="error">{error}</h2>
             </form>
         </div>
     );
