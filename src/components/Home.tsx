@@ -47,6 +47,12 @@ function Home() {
                     <h1>Načítání...</h1>
                 )}
             </div>
+            <div className="footer">
+                Lukáš Odehnal 2022
+                <a className="floatRight" href="/feedback">
+                    Feedback
+                </a>
+            </div>
         </div>
     );
 }

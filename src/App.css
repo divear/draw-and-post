@@ -6,8 +6,10 @@
 :root {
     --bg: #02111b;
     --fr: white;
+    --hoverBg: #8b8ea8;
     --border: #555766;
     --main: #2cab5d;
+    --mainDark: #257e47;
 }
 * {
     font-family: "Inter", sans-serif;
@@ -26,9 +28,15 @@ button {
     border-radius: 1vw;
     user-select: none;
 }
+button:hover {
+    background-color: var(--mainDark);
+}
 input {
     font-size: 3rem;
     width: 20%;
+}
+a {
+    color: var(--main);
 }
 
 .img {
@@ -41,6 +49,9 @@ input {
     border: 1px solid var(--border);
     border-radius: 2vw;
     overflow-wrap: anywhere;
+}
+.message:hover {
+    border: 2px solid var(--hoverBg);
 }
 .messages {
     display: grid;
@@ -85,6 +96,15 @@ input {
 .logo {
     width: 10vw;
     cursor: pointer;
+}
+.insta {
+    padding: 3vw;
+}
+.insta > button {
+    padding: 0.5vw;
+}
+.insta > button > img {
+    width: 8vw;
 }
 
 @media only screen and (max-width: 810px) {
