@@ -8,13 +8,13 @@ function Drawing() {
     const [lineWidth, setLineWidth] = useState(50);
     const [color, setColor] = useState("black");
 
-    const HEIGHT = window.innerWidth > 820 ? window.innerHeight - 100 : 375;
-    const WIDTH = window.innerWidth > 820 ? window.innerWidth / 2 : 375;
+    const HEIGHT = window.innerWidth;
+    const WIDTH = window.innerWidth;
 
     onmousedown = function (e) {
         isDown = true;
         this.onmousemove = (e) => {
-            if (isDown || WIDTH < 810) {
+            if (isDown) {
                 Xpos = e.offsetX;
                 Ypos = e.offsetY;
             }
@@ -23,6 +23,12 @@ function Drawing() {
                 isDown = false;
             };
         };
+    };
+    ontouchmove = function (e) {
+        console.log(WIDTH);
+
+        Xpos = e.touches[0].clientX - WIDTH;
+        Ypos = e.touches[0].clientY - HEIGHT;
     };
 
     const canvas = useRef(null);
@@ -33,7 +39,6 @@ function Drawing() {
 
         if (c) {
             c.fillStyle = color;
-
             c.beginPath();
             c.arc(Xpos, Ypos, lineWidth, 0, 2 * Math.PI);
             c.fill();
@@ -59,6 +64,7 @@ function Drawing() {
             <canvas
                 id="canvas"
                 onMouseMove={Draw}
+                onTouchMove={Draw}
                 ref={canvas}
                 width={WIDTH}
                 height={HEIGHT}

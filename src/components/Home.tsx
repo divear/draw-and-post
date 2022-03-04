@@ -22,6 +22,17 @@ function Home() {
     return (
         <div>
             <title>Malo</title>
+
+            <div className="profileMin">
+                <h1>
+                    <img
+                        className="pfp"
+                        src="https://avatars.githubusercontent.com/u/77848587?v=4"
+                        alt="Icon"
+                    />
+                    {localStorage.getItem("username")}
+                </h1>
+            </div>
             <button
                 onClick={() => (window.location.href = "/novyObrazek")}
                 className="addDrawing"
