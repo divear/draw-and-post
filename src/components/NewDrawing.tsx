@@ -13,10 +13,11 @@ function NewDrawing() {
     const [username, setUsername] = useState("");
 
     const imgLink = `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`;
+
     function submit(e) {
         e.preventDefault();
 
-        localStorage.setItem("username", username);
+        username && localStorage.setItem("username", username);
 
         async function uploadCanvas() {
             let imgBlob: any;

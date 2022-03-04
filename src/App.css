@@ -164,6 +164,8 @@ a {
         -o-user-select: none;
         user-select: none;
         overflow: hidden;
+        overflow-x: hidden;
+        height: 100%;
     }
     .newchalkaInput {
         width: 70%;
