@@ -60,6 +60,7 @@ function Drawing() {
                 value={color}
                 onChange={(e) => setColor(e.target.value)}
                 title="Barva tahu"
+                className="colorInput"
             />
             <canvas
                 id="canvas"

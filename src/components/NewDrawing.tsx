@@ -68,11 +68,11 @@ function NewDrawing() {
                     <label htmlFor="username">Přezdívka</label>
                     <br />
                     <input
-                        className="username"
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         id="username"
+                        className="newchalkaInput"
                     />
                 </div>
 
