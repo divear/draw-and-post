@@ -8,8 +8,10 @@ function Drawing() {
     const [lineWidth, setLineWidth] = useState(50);
     const [color, setColor] = useState("black");
 
-    const HEIGHT = window.innerWidth;
-    const WIDTH = window.innerWidth;
+    const HEIGHT =
+        window.innerWidth > 820 ? window.innerHeight / 1.2 : window.innerWidth;
+    const WIDTH =
+        window.innerWidth > 820 ? window.innerWidth / 2 : window.innerWidth;
 
     onmousedown = function (e) {
         isDown = true;
@@ -24,12 +26,14 @@ function Drawing() {
             };
         };
     };
-    ontouchmove = function (e) {
-        console.log(WIDTH);
+    if (window.innerWidth < 820) {
+        window.ontouchmove = function (e) {
+            console.log(WIDTH);
 
-        Xpos = e.touches[0].clientX;
-        Ypos = e.touches[0].clientY - HEIGHT;
-    };
+            Xpos = e.touches[0].clientX;
+            Ypos = e.touches[0].clientY - HEIGHT;
+        };
+    }
 
     const canvas = useRef(null);
 

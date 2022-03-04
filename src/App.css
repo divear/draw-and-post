@@ -169,9 +169,10 @@ a {
         width: 70%;
     }
     .colorInput {
-        position: absolute;
-        top: -20vh;
-        right: -20vw;
+        position: fixed;
+        top: 20vh;
+        right: -1vw;
         transform: rotate(90deg);
+        width: 20%;
     }
 }

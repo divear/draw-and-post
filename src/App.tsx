@@ -13,7 +13,8 @@ function App() {
             <div
                 onClick={() => (window.location.href = "/")}
                 className={
-                    window.location.pathname === "/novyObrazek"
+                    window.location.pathname === "/novyObrazek" &&
+                    window.innerWidth < 820
                         ? "no"
                         : "header"
                 }
