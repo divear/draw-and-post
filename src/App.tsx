@@ -12,7 +12,11 @@ function App() {
         <div className="App">
             <div
                 onClick={() => (window.location.href = "/")}
-                className="header"
+                className={
+                    window.location.pathname === "/novyObrazek"
+                        ? "no"
+                        : "header"
+                }
             >
                 <img className="logo" src={logo} alt="Malo" />
             </div>

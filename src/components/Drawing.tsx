@@ -27,7 +27,7 @@ function Drawing() {
     ontouchmove = function (e) {
         console.log(WIDTH);
 
-        Xpos = e.touches[0].clientX - WIDTH;
+        Xpos = e.touches[0].clientX;
         Ypos = e.touches[0].clientY - HEIGHT;
     };
 
