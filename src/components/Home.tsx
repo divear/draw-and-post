@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import Modal from "./Modal";
 
 function Home() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [data, setData] = useState<any[]>([]);
-    const [backup, setBackup] = useState([]);
+    const [modalVis, setModalVis] = useState(false);
 
     useEffect(() => {
         async function getBlogs() {
             try {
                 const response = await fetch(serverDomain + "/drawings");
                 const jsonData = await response.json();
-                setData(jsonData);
-                setBackup(jsonData.reverse());
+                setData(jsonData.reverse());
             } catch (error) {
                 console.log(error);
             }
@@ -23,8 +23,15 @@ function Home() {
         <div>
             <title>Malo</title>
 
+            <div className={modalVis ? "" : "no"}>
+                <Modal />
+            </div>
+
             <div className="profileMin">
-                <h1>
+                <h1
+                    onClick={() => setModalVis(true)}
+                    className={localStorage.getItem("username") ? "" : "no"}
+                >
                     <img
                         className="pfp"
                         src="https://avatars.githubusercontent.com/u/77848587?v=4"
@@ -32,6 +39,12 @@ function Home() {
                     />
                     {localStorage.getItem("username")}
                 </h1>
+                <button
+                    className={localStorage.getItem("username") ? "no" : ""}
+                    onClick={() => setModalVis(true)}
+                >
+                    Přihlásit se
+                </button>
             </div>
             <button
                 onClick={() => (window.location.href = "/novyObrazek")}

@@ -67,6 +67,7 @@ a {
 .date {
     opacity: 0.4;
     margin: 0;
+    z-index: 0;
 }
 .addDrawing {
     float: right;
@@ -93,9 +94,6 @@ a {
     color: red;
 }
 
-.usernameDiv {
-    user-select: none;
-}
 .logo {
     width: 10vw;
     cursor: pointer;
@@ -122,6 +120,56 @@ a {
 }
 .no {
     display: none;
+}
+
+/* modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #02111b69;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+}
+.modalCard {
+    background-color: var(--border);
+    position: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    width: 30vw;
+    height: 30vh;
+    border-radius: 2vw;
+    padding: 2vw;
+    opacity: 5;
+    font-size: 2rem;
+}
+.username {
+    width: 70%;
+}
+.choosePfp {
+    width: 5vw;
+    border-radius: 3vw;
+}
+.choosePfp:hover {
+    filter: grayscale(80%);
+    cursor: pointer;
+}
+.exit {
+    margin: 0;
+    float: right;
+    cursor: pointer;
+}
+.exit:hover {
+    color: var(--hoverBg);
 }
 
 @media only screen and (max-width: 810px) {
