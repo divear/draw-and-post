@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
+import defaultPfp from "./imgs/defaultPfp.png";
 
 function Home() {
+    const [pfp, setPfp] = useState(localStorage.getItem("pfp") || defaultPfp);
+
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [data, setData] = useState<any[]>([]);
     const [modalVis, setModalVis] = useState(false);
@@ -32,11 +35,7 @@ function Home() {
                     onClick={() => setModalVis(true)}
                     className={localStorage.getItem("username") ? "" : "no"}
                 >
-                    <img
-                        className="pfp"
-                        src="https://avatars.githubusercontent.com/u/77848587?v=4"
-                        alt="Icon"
-                    />
+                    <img className="pfp" src={pfp} alt="Icon" />
                     {localStorage.getItem("username")}
                 </h1>
                 <button

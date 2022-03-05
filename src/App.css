@@ -117,6 +117,8 @@ a {
 }
 .pfp {
     width: 2vw;
+    border-radius: 9vw;
+    margin: 0 0.5vw;
 }
 .no {
     display: none;
@@ -146,7 +148,7 @@ a {
     bottom: 0;
     position: fixed;
     width: 30vw;
-    height: 30vh;
+    height: 35vh;
     border-radius: 2vw;
     padding: 2vw;
     opacity: 5;
@@ -156,8 +158,8 @@ a {
     width: 70%;
 }
 .choosePfp {
-    width: 5vw;
-    border-radius: 3vw;
+    width: 9vw;
+    border-radius: 9vw;
 }
 .choosePfp:hover {
     filter: grayscale(80%);
@@ -167,9 +169,13 @@ a {
     margin: 0;
     float: right;
     cursor: pointer;
+    user-select: none;
 }
 .exit:hover {
     color: var(--hoverBg);
+}
+.save {
+    margin: 2vh 10vw;
 }
 
 @media only screen and (max-width: 810px) {

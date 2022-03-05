@@ -3,7 +3,7 @@ import pfp from "./imgs/defaultPfp.png";
 
 function Modal() {
     const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [imgLink, setImgLink] = useState("");
+    const [img, setImg] = useState(pfp);
     const inputFile = useRef(null);
     const clickEvent = new MouseEvent("click", {
         view: window,
@@ -14,14 +14,11 @@ function Modal() {
     function chooseImg() {
         inputFile.current.dispatchEvent(clickEvent);
     }
-
-    function submit(e) {
-        console.log("submit");
-    }
     function changeImg(e) {
-        setImgLink(
-            `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2F${e.files[0].name}?alt=media`
-        );
+        if (e.target.files && e.target.files[0]) {
+            setImg(URL.createObjectURL(e.target.files[0]));
+            localStorage.setItem("pfp", img);
+        }
     }
 
     return (
@@ -49,13 +46,15 @@ function Modal() {
                     Profilovka
                 </label>
                 <br />
+
                 <img
                     onClick={() => chooseImg()}
                     id="choosePfp"
                     className="choosePfp"
-                    src={pfp}
+                    src={img}
                     alt=""
                 />
+
                 <input
                     className="no"
                     accept="image/*"
