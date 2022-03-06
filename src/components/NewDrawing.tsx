@@ -8,9 +8,10 @@ const name = (Math.random() + 1).toString(36).substring(7);
 
 function NewDrawing() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
+    const pfp = localStorage.getItem("pfp");
     const [isDisabled, setIsDisabled] = useState(false);
     const [nazev, setNazev] = useState("");
-    const [username, setUsername] = useState("");
+    const username = localStorage.getItem("username");
 
     const imgLink = `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`;
 
@@ -37,8 +38,9 @@ function NewDrawing() {
                             const Rnazev = { nazev };
                             const Rlink = { imgLink };
                             const Rusername = { username };
+                            const Rpfp = { pfp };
 
-                            const arr = [Rnazev, Rlink, Rusername];
+                            const arr = [Rnazev, Rlink, Rusername, Rpfp];
 
                             const response = await fetch(
                                 `${serverDomain}/drawings`,
@@ -65,18 +67,6 @@ function NewDrawing() {
         <div className="newDrawing">
             <title>Nový obrázek</title>
             <form onSubmit={submit} className="addForm" action="">
-                <div className="usernameDiv">
-                    <label htmlFor="username">Přezdívka</label>
-                    <br />
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        id="username"
-                        className="newchalkaInput"
-                    />
-                </div>
-
                 <div className="usernameDiv">
                     <label htmlFor="nazev">Název obrázku</label>
                     <br />

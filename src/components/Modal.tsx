@@ -84,7 +84,7 @@ function Modal() {
                 {/* invisible input */}
                 <input
                     className="no"
-                    accept="image/*"
+                    accept="image/png, image/jpg, image/jpeg"
                     ref={inputFile}
                     type="file"
                     onChange={(e) => changeImg(e)}

@@ -177,6 +177,11 @@ a {
 .save {
     margin: 2vh 10vw;
 }
+.smallPfp {
+    width: 2vw;
+    border-radius: 9vw;
+    margin: 0 0.2vw 0 0;
+}
 
 @media only screen and (max-width: 810px) {
     .messages {

@@ -16,6 +16,7 @@ function Home() {
                 const response = await fetch(serverDomain + "/drawings");
                 const jsonData = await response.json();
                 setData(jsonData.reverse());
+                console.log(jsonData);
             } catch (error) {
                 console.log(error);
             }
@@ -65,6 +66,11 @@ function Home() {
                         return (
                             <div key={d.id} className="message">
                                 <h5>
+                                    <img
+                                        className="smallPfp"
+                                        src={d.pfp}
+                                        alt="👤"
+                                    />
                                     <i>{d.username || "Anonym"}</i>
                                 </h5>
                                 <h1>{d.nazev}</h1>
