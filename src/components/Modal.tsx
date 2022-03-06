@@ -6,9 +6,8 @@ function Modal() {
     const [img, setImg] = useState<any>(null);
     const [imgLink, setImgLink] = useState(
         localStorage.getItem("pfp") ||
-            "https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2Ftrolge_pfp.png?alt=media&token=3a5b09b6-adb2-4e72-af78-acfac1543b30"
+            "https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2Ftrolge_pfp.png?alt=media"
     );
-    const [error, setError] = useState("");
     const inputFile = useRef(null);
     const [isMouseOnCard, setMouseIsOnCard] = useState(false);
     const clickEvent = new MouseEvent("click", {
@@ -33,12 +32,7 @@ function Modal() {
 
         const spaceRef = ref(storage, `pfp/${tempImg && tempImg.name}`);
         uploadBytes(spaceRef, tempImg).then(async (snapshot) => {
-            // setImgLink(
-            //     `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2F${e.target.files[0].name}?alt=media`
-            // );
-            console.log(snapshot);
-
-            console.log("done");
+            window.location.reload();
         });
     }
     function exit() {

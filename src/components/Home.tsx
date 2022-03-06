@@ -37,8 +37,6 @@ function Home() {
                 <Modal />
             </div>
 
-            <img alt="qwertzuiopokjhgfcx" src="" />
-
             <div className="profileMin">
                 <h1
                     onClick={() => setModalVis(true)}
