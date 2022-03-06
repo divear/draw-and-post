@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import defaultPfp from "./imgs/defaultPfp.png";
+import { isFunctionExpression } from "typescript";
 
 function Home() {
-    const [pfp, setPfp] = useState(localStorage.getItem("pfp") || defaultPfp);
+    const pfp = localStorage.getItem("pfp") || defaultPfp;
+    const modalRef = useRef();
 
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [data, setData] = useState<any[]>([]);
@@ -22,12 +24,21 @@ function Home() {
         getBlogs();
     }, []);
 
+    onkeydown = (e) => {
+        if (e.key === "Escape") {
+            setModalVis(false);
+        }
+    };
+    function exit(e) {
+        console.log(e);
+    }
+
     return (
         <div>
             <title>Malo</title>
 
-            <div className={modalVis ? "" : "no"}>
-                <Modal />
+            <div ref={modalRef} className={modalVis ? "" : "no"}>
+                <Modal onClick={(e) => exit(e)} />
             </div>
 
             <div className="profileMin">

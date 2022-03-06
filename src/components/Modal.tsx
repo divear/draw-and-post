@@ -20,11 +20,12 @@ function Modal() {
             localStorage.setItem("pfp", img);
         }
     }
+    function exit() {}
 
     return (
         <div className="modal">
             <div className="modalCard">
-                <h4 onClick={() => window.location.reload()} className="exit">
+                <h4 onClick={exit} className="exit">
                     X
                 </h4>
                 <label className="label" htmlFor="username">
