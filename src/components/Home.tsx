@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 import defaultPfp from "./imgs/defaultPfp.png";
-import { isFunctionExpression } from "typescript";
 
 function Home() {
     const pfp = localStorage.getItem("pfp") || defaultPfp;
@@ -29,17 +28,16 @@ function Home() {
             setModalVis(false);
         }
     };
-    function exit(e) {
-        console.log(e);
-    }
 
     return (
         <div>
             <title>Malo</title>
 
             <div ref={modalRef} className={modalVis ? "" : "no"}>
-                <Modal onClick={(e) => exit(e)} />
+                <Modal />
             </div>
+
+            <img alt="qwertzuiopokjhgfcx" src="" />
 
             <div className="profileMin">
                 <h1

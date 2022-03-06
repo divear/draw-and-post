@@ -1,31 +1,61 @@
+import { ref, getStorage, uploadBytes } from "./firebase";
 import React, { useRef, useState } from "react";
-import pfp from "./imgs/defaultPfp.png";
 
 function Modal() {
     const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [img, setImg] = useState(pfp);
+    const [img, setImg] = useState<any>(null);
+    const [imgLink, setImgLink] = useState(
+        localStorage.getItem("pfp") ||
+            "https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2Ftrolge_pfp.png?alt=media&token=3a5b09b6-adb2-4e72-af78-acfac1543b30"
+    );
+    const [error, setError] = useState("");
     const inputFile = useRef(null);
+    const [isMouseOnCard, setMouseIsOnCard] = useState(false);
     const clickEvent = new MouseEvent("click", {
         view: window,
         bubbles: true,
         cancelable: false,
     });
+    let modalCardCoords;
+
+    const storage = getStorage();
 
     function chooseImg() {
         inputFile.current.dispatchEvent(clickEvent);
     }
     function changeImg(e) {
-        if (e.target.files && e.target.files[0]) {
-            setImg(URL.createObjectURL(e.target.files[0]));
-            localStorage.setItem("pfp", img);
-        }
+        const tempImg = e.target.files[0];
+        setImg(tempImg);
+        localStorage.setItem(
+            "pfp",
+            `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2F${tempImg.name}?alt=media`
+        );
+
+        const spaceRef = ref(storage, `pfp/${tempImg && tempImg.name}`);
+        uploadBytes(spaceRef, tempImg).then(async (snapshot) => {
+            // setImgLink(
+            //     `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/pfp%2F${e.target.files[0].name}?alt=media`
+            // );
+            console.log(snapshot);
+
+            console.log("done");
+        });
     }
-    function exit() {}
+    function exit() {
+        if (isMouseOnCard || !img) return;
+        localStorage.setItem("username", username);
+        window.location.reload();
+    }
 
     return (
-        <div className="modal">
-            <div className="modalCard">
-                <h4 onClick={exit} className="exit">
+        <div onClick={exit} className="modal">
+            <div
+                onMouseEnter={() => setMouseIsOnCard(true)}
+                onMouseLeave={() => setMouseIsOnCard(false)}
+                ref={(n) => (modalCardCoords = n)}
+                className="modalCard"
+            >
+                <h4 onClick={() => window.location.reload()} className="exit">
                     X
                 </h4>
                 <label className="label" htmlFor="username">
@@ -48,14 +78,16 @@ function Modal() {
                 </label>
                 <br />
 
+                {/* source image */}
                 <img
                     onClick={() => chooseImg()}
                     id="choosePfp"
                     className="choosePfp"
-                    src={img}
-                    alt=""
+                    src={imgLink}
+                    alt="Vyber obrázek"
                 />
 
+                {/* invisible input */}
                 <input
                     className="no"
                     accept="image/*"
