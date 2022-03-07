@@ -48,6 +48,7 @@ function Home() {
                             : "no"
                     }
                 >
+                    {localStorage.getItem("username")}
                     <img className="pfp" src={pfp} alt="Icon" />
                 </h1>
                 <button

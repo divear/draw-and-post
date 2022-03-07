@@ -37,7 +37,6 @@ function Modal() {
     }
     function exit() {
         if (isMouseOnCard || !img) return;
-        localStorage.setItem("username", username);
         window.location.reload();
     }
 

@@ -236,4 +236,32 @@ a {
         transform: rotate(90deg);
         width: 20%;
     }
+    .pfp {
+        width: 11vw;
+    }
+    .modalCard {
+        background-color: var(--border);
+        position: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+        width: 90%;
+        height: 35vh;
+        border-radius: 2vw;
+        padding: 2vw;
+        opacity: 5;
+        font-size: 2rem;
+    }
+    .choosePfp {
+        width: 30%;
+        border-radius: 100%;
+    }
+    .profileMin {
+        width: 50%;
+    }
 }
