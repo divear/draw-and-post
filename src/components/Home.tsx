@@ -41,13 +41,22 @@ function Home() {
             <div className="profileMin">
                 <h1
                     onClick={() => setModalVis(true)}
-                    className={localStorage.getItem("username") ? "" : "no"}
+                    className={
+                        localStorage.getItem("username") ||
+                        localStorage.getItem("pfp")
+                            ? ""
+                            : "no"
+                    }
                 >
                     <img className="pfp" src={pfp} alt="Icon" />
-                    {localStorage.getItem("username")}
                 </h1>
                 <button
-                    className={localStorage.getItem("username") ? "no" : ""}
+                    className={
+                        localStorage.getItem("username") ||
+                        localStorage.getItem("pfp")
+                            ? "no"
+                            : ""
+                    }
                     onClick={() => setModalVis(true)}
                 >
                     Přihlásit se
