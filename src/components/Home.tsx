@@ -9,6 +9,7 @@ function Home() {
     const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
     const [data, setData] = useState<any[]>([]);
     const [modalVis, setModalVis] = useState(false);
+    const [modalPic, setModalPic] = useState("");
 
     useEffect(() => {
         async function getBlogs() {
@@ -70,11 +71,21 @@ function Home() {
                 Namalovat nový
             </button>
             <br />
+            <div
+                onClick={() => setModalPic(null)}
+                className={modalPic ? "modalPicParent" : "no"}
+            >
+                <img className="modalPic" src={modalPic} alt="" />
+            </div>
             <div className="messages">
                 {data[0] ? (
                     data.map((d) => {
                         return (
-                            <div key={d.id} className="message">
+                            <div
+                                onClick={() => setModalPic(d.img)}
+                                key={d.id}
+                                className="message"
+                            >
                                 <h5>
                                     <img
                                         className="smallPfp"
