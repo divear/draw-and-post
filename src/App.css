@@ -221,7 +221,8 @@ a {
         grid-auto-rows: minmax(10px, auto);
     }
     .message {
-        width: 80vw;
+        width: 90%;
+        margin: 0 5vw;
     }
     .img {
         width: 50vw;
@@ -297,5 +298,11 @@ a {
     }
     .smallPfp {
         width: 10vw;
+    }
+    .insta > button {
+        width: 30%;
+    }
+    .insta > button > img {
+        width: 100%;
     }
 }

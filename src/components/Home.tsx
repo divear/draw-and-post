@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import defaultPfp from "./imgs/defaultPfp.png";
 
 function Home() {
+    const isPhone = window.innerWidth < 840;
     const pfp = localStorage.getItem("pfp") || defaultPfp;
     const modalRef = useRef();
 
@@ -73,7 +74,7 @@ function Home() {
             <br />
             <div
                 onClick={() => setModalPic(null)}
-                className={modalPic ? "modalPicParent" : "no"}
+                className={modalPic && !isPhone ? "modalPicParent" : "no"}
             >
                 <img className="modalPic" src={modalPic} alt="" />
             </div>
