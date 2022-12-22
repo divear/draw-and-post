@@ -7,84 +7,88 @@ const storage = getStorage();
 const name = (Math.random() + 1).toString(36).substring(7);
 
 function NewDrawing() {
-    const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
-    const pfp = localStorage.getItem("pfp");
-    const [isDisabled, setIsDisabled] = useState(false);
-    const [nazev, setNazev] = useState("");
-    const username = localStorage.getItem("username");
+	const serverDomain = process.env.REACT_APP_SERVERDOMAIN;
+	const pfp = localStorage.getItem("pfp");
+	const [isDisabled, setIsDisabled] = useState(false);
+	const [nazev, setNazev] = useState("");
+	const username = localStorage.getItem("username");
 
-    const imgLink = `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`;
+	const imgLink = `https://firebasestorage.googleapis.com/v0/b/drawing-41fad.appspot.com/o/images%2F${name}.png?alt=media`;
 
-    function submit(e) {
-        e.preventDefault();
+	function submit(e) {
+		e.preventDefault();
 
-        username && localStorage.setItem("username", username);
+		username && localStorage.setItem("username", username);
 
-        async function uploadCanvas() {
-            let imgBlob: any;
-            canvas.toBlob((blob) => {
-                imgBlob = blob;
+		async function uploadCanvas() {
+			let imgBlob: any;
+			canvas.toBlob((blob) => {
+				imgBlob = blob;
 
-                const spaceRef = ref(storage, `images/${name}.png`);
+				const spaceRef = ref(storage, `images/${name}.png`);
 
-                imgBlob &&
-                    uploadBytes(spaceRef, imgBlob).then(async (snapshot) => {
-                        try {
-                            console.log("Uploaded!!");
-                            console.log(snapshot);
+				imgBlob &&
+					uploadBytes(spaceRef, imgBlob).then(async (snapshot) => {
+						try {
+							console.log("Uploaded!!");
+							console.log(snapshot);
+							console.log(imgLink);
 
-                            setIsDisabled(true);
+							setIsDisabled(true);
 
-                            const Rnazev = { nazev };
-                            const Rlink = { imgLink };
-                            const Rusername = { username };
-                            const Rpfp = { pfp };
+							const Rnazev = { nazev };
+							const Rlink = { imgLink };
+							const Rusername = { username };
+							const Rpfp = { pfp };
 
-                            const arr = [Rnazev, Rlink, Rusername, Rpfp];
+							const arr = [Rnazev, Rlink, Rusername, Rpfp];
+							console.log(arr);
 
-                            const response = await fetch(
-                                `${serverDomain}/drawings`,
-                                {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                    },
-                                    body: JSON.stringify(arr),
-                                }
-                            );
-                            console.log(response);
-                            window.location.href = "/";
-                        } catch (error) {
-                            console.log(error);
-                        }
-                    });
-            });
-        }
-        uploadCanvas();
-    }
+							if (imgLink) {
+								const response = await fetch(
+									`${serverDomain}/drawings`,
+									{
+										method: "POST",
+										headers: {
+											"Content-Type": "application/json",
+										},
+										body: JSON.stringify(arr),
+									}
+								);
+								console.log(response);
+								// window.location.href = "/";
+							}
+						} catch (error) {
+							console.log(error);
+						}
+					});
+			});
+		}
+		uploadCanvas();
+	}
 
-    return (
-        <div className="newDrawing">
-            <title>Nový obrázek</title>
-            <form onSubmit={submit} className="addForm" action="">
-                <div className="usernameDiv">
-                    <label htmlFor="nazev">Název obrázku</label>
-                    <br />
-                    <input
-                        onChange={(e) => setNazev(e.target.value)}
-                        value={nazev}
-                        className="newchalkaInput"
-                        type="text"
-                        id="nazev"
-                    />
-                </div>
-                <Drawing />
-                <button className="poslat" disabled={isDisabled}>
-                    Poslat
-                </button>
-            </form>
-        </div>
-    );
+	return (
+		<div className="newDrawing">
+			<title>Nový obrázek</title>
+			<form onSubmit={submit} className="addForm" action="">
+				<div className="usernameDiv">
+					<label htmlFor="nazev">Název obrázku</label>
+					<br />
+					<input
+						onChange={(e) => setNazev(e.target.value)}
+						value={nazev}
+						className="newchalkaInput"
+						type="text"
+						id="nazev"
+					/>
+				</div>
+				<Drawing />
+				<button className="poslat" disabled={isDisabled}>
+					Poslat
+				</button>
+			</form>
+		</div>
+	);
 }
 
 export default NewDrawing;
