@@ -59,6 +59,7 @@ function Drawing() {
 				max={100}
 				title="Tloušťka tahu"
 			/>
+			<h4>Barva</h4>
 			<input
 				type="color"
 				value={color}
