@@ -59,8 +59,9 @@ function Drawing() {
 				max={100}
 				title="Tloušťka tahu"
 			/>
-			<h4>Barva</h4>
+			<label htmlFor="color">Barva: </label>
 			<input
+				id="color"
 				type="color"
 				value={color}
 				onChange={(e) => setColor(e.target.value)}
